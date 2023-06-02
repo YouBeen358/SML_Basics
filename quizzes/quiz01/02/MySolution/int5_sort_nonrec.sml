@@ -71,14 +71,15 @@ val
 int3_sort_nr =
 fn(xs: int3): int3 => raise NotImplemented320
 let
-    val (x1, x2, x3) = xs
-in 
-    if x1 <= x2 then 
-      (if x1 <= x3 then
-        (if x2 <= x3 then (x1, x2, x3)
-        else (x1, x3, x2))
-      else (x3, x1, x2))
-    else 
+      val(x1, x2, x3) = xs
+      val(sorted1, sorted2) = int2_sort_nr (x1, x2)
+      val(min, sorted3) = int2_sort_nr (sorted1, x3)
+      val(middle, max) = int2_sort_nr(sorted2, sorted3)
+    in
+      (min, middle, max)
+    end
+
+    
 
 
 (* ****** ****** *)
@@ -86,13 +87,35 @@ in
 val
 int4_sort_nr =
 fn(xs: int4): int4 => raise NotImplemented320
-
+let
+      val(x1, x2, x3, x4) = xs
+      val(sorted1, sorted2) = int2_sort_nr (x1, x2)
+      val(sorted3, sorted4) = int2_sort_nr (x3, x4)
+      val(min, middle 1) = int2_sort_nr (sorted1, sorted3)
+      val(middle2, max) = int2_sort_nr(sorted2, sorted4)
+      val(mid1, mid2) =int2_sort_nr(middle1, middle2)
+    in
+      (min, mid1, mid2, max)
+    end
 (* ****** ****** *)
 
 val
 int5_sort_nr =
 fn(xs: int5): int5 => raise NotImplemented320
+let
+      val(x1, x2, x3, x4, x5) = xs
+      val(sorted1, sorted2, sorted3, sorted4) = int4_sort_nr (x1, x2, x3, x4)
+      val(sort2, sort3, sort4, sort5) = int4_sort_nr (x2, x3, x4, x5)
+      val(min, min2) = int2_sort_nr(sorted1, sort2)
 
+    in
+      (min, min2, sort3, sort4, sort5)
+    end
 (* ****** ****** *)
+
+val
+test1 =
+int2_sort_nr(2,3);
+
 
 (* end of [CS320-2023-Sum1-quiz01-int5_sort_nonrec.sml] *)
