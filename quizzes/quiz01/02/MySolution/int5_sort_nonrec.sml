@@ -106,6 +106,25 @@ fn(xs: int5): int5 =>
     in
           (min1, mid2, mid4, max)
     end
-(* ****** ****** *)
 
+
+val
+int5_sort_nr =
+fn(xs: int5): int5 => 
+ let
+      val (x1, x2, x3, x4, x5) = xs
+      val (sorted1, sorted2, sorted3, sorted4) = int4_sort_nr(x1, x2, x3, x4)
+      val (min1, mid1) = int2_sort_nr(sorted1, x5)
+      val (mid2, mid3) = int2_sort_nr(mid1, sorted2)
+      val (mid4, mid5) = int2_sort_nr(mid3, sorted3)
+      val (mid6, max) = int2_sort_nr(mid5, sorted4)
+    in
+          (min1, mid2, mid4, mid6, max)
+  end
+(* ****** ****** *)
+val test03 = int5_sort_nr(2, 3, 6, 4, 1)
+val test04 = int5_sort_nr(2, 1, 4, 5, 3)
+val xs2 = int5_sort_nr(2,3,4,4,1)
+val xs3 = int5_sort_nr(3,2,4,2,3)
+val xs4 = int5_sort_nr(3, 2, 7, 4, 5)
 (* end of [CS320-2023-Sum1-quiz01-int5_sort_nonrec.sml] *)
