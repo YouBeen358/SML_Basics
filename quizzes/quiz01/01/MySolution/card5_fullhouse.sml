@@ -122,6 +122,7 @@ card_suit(x1: card) = #1(x1)
 fun
 card_rank(x1: card) = #2(x1)
 
+
 (* ****** ****** *)
 
 (*
@@ -141,31 +142,21 @@ HX-2023-05-31:
 Please assume that cs is a list of 5 cards
 that are sorted according to their ranks.
 *)
-fun
-card5_fullhouse
-(cs: card list): bool = raise NotImplemented320
-
-let 
-
-fun 
-head(xs) =
-	case xs of
-		[] => raise List.Empty
-	  | (x::_) => x
-    suit2int(x: suit): int
-    rank2int(x: rank): int
-
-    if y <5 then  else y + 1
-      
-
-    
 
 
-in 
-
-y = 0
 
 
+fun card5_fullhouse (cs: card list): bool =
+  let
+    val (c1::c2::c3::c4::c5::_) = cs
+    val r1 = card_rank c1
+    val r2 = card_rank c2
+    val r3 = card_rank c3
+    val r4 = card_rank c4
+    val r5 = card_rank c5
+  in
+    ((r1 = r2 andalso r2 = r3) andalso (r4 = r5)) orelse ((r1 = r2) andalso (r3 = r4 andalso r4 = r5))
+  end
 
 (* ****** ****** *)
 
