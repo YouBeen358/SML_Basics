@@ -55,7 +55,7 @@ int5_sort_nr(xs) for every 5-tuple xs of the type int5.
 
 val
 int2_sort_nr =
-fn(xs: int2): int2 => raise NotImplemented320
+fn(xs: int2): int2 => 
   let 
     val (x1, x2) = xs
 
@@ -69,7 +69,7 @@ fn(xs: int2): int2 => raise NotImplemented320
 
 val
 int3_sort_nr =
-fn(xs: int3): int3 => raise NotImplemented320
+fn(xs: int3): int3 => 
 let
       val(x1, x2, x3) = xs
       val(sorted1, sorted2) = int2_sort_nr (x1, x2)
@@ -86,7 +86,7 @@ let
 
 val
 int4_sort_nr =
-fn(xs: int4): int4 => raise NotImplemented320
+fn(xs: int4): int4 => 
 let
       val(x1, x2, x3, x4) = xs
       val(sorted1, sorted2) = int2_sort_nr (x1, x2)
@@ -101,7 +101,7 @@ let
 
 val
 int5_sort_nr =
-fn(xs: int5): int5 => raise NotImplemented320
+fn(xs: int5): int5 => 
  let
       val (x1, x2, x3, x4, x5) = xs
       val (sorted1, sorted2, sorted3, sorted4) = int4_sort_nr(x1, x2, x3, x4)
@@ -114,9 +114,6 @@ fn(xs: int5): int5 => raise NotImplemented320
     end
 (* ****** ****** *)
 
-val
-test1 =
-int2_sort_nr(2,3);
 
 
 (* end of [CS320-2023-Sum1-quiz01-int5_sort_nonrec.sml] *)

@@ -145,6 +145,28 @@ fun
 card5_fullhouse
 (cs: card list): bool = raise NotImplemented320
 
+let 
+
+fun 
+head(xs) =
+	case xs of
+		[] => raise List.Empty
+	  | (x::_) => x
+    suit2int(x: suit): int
+    rank2int(x: rank): int
+
+    if y <5 then  else y + 1
+      
+
+    
+
+
+in 
+
+y = 0
+
+
+
 (* ****** ****** *)
 
 (* end of [CS320-2023-Sum1-quiz01-card5_fullhouse.sml] *)
