@@ -102,14 +102,15 @@ let
 val
 int5_sort_nr =
 fn(xs: int5): int5 => raise NotImplemented320
-let
-      val(x1, x2, x3, x4, x5) = xs
-      val(sorted1, sorted2, sorted3, sorted4) = int4_sort_nr (x1, x2, x3, x4)
-      val(sort2, sort3, sort4, sort5) = int4_sort_nr (x2, x3, x4, x5)
-      val(min, min2) = int2_sort_nr(sorted1, sort2)
-
+ let
+      val (x1, x2, x3, x4, x5) = xs
+      val (sorted1, sorted2, sorted3, sorted4) = int4_sort_nr(x1, x2, x3, x4)
+      val (min1, mid1) = int2_sort_nr(sorted1, x5)
+      val (mid2, mid3) = int2_sort_nr(num2, sorted2)
+      val (mid4, mid5) = int2_sort_nr(num4, sorted3)
+      val (mid6, max) = int2_sort_nr(num6, sorted4)
     in
-      (min, min2, sort3, sort4, sort5)
+          (min1, mid2, mid4, max)
     end
 (* ****** ****** *)
 
