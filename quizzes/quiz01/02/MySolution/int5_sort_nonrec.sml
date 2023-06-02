@@ -56,44 +56,37 @@ int5_sort_nr(xs) for every 5-tuple xs of the type int5.
 val
 int2_sort_nr =
 fn(xs: int2): int2 => 
-  let 
-    val (x1, x2) = xs
-
-  in 
-    if x1 <= x2 then (x1, x2) else (x2, x1)
-  
-  end
-
+  let
+    val(x1, x2) = xs
+  in
+    if x1 <= x2 then (x1, x2) else (x2, x1) 
+  end 
 
 (* ****** ****** *)
 
 val
 int3_sort_nr =
 fn(xs: int3): int3 => 
-let
+    let
       val(x1, x2, x3) = xs
-      val(sorted1, sorted2) = int2_sort_nr (x1, x2)
-      val(min, sorted3) = int2_sort_nr (sorted1, x3)
-      val(middle, max) = int2_sort_nr(sorted2, sorted3)
+      val(sort1, sort2) = int2_sort_nr (x1, x2)
+      val(min, sort3) = int2_sort_nr (sort1, x3)
+      val(middle1, max) = int2_sort_nr(sort2, sort3)
     in
-      (min, middle, max)
+      (min, middle1, max)
     end
-
-    
-
-
 (* ****** ****** *)
 
-val
+val 
 int4_sort_nr =
-fn(xs: int4): int4 => 
-let
-      val(x1, x2, x3, x4) = xs
-      val(sorted1, sorted2) = int2_sort_nr (x1, x2)
-      val(sorted3, sorted4) = int2_sort_nr (x3, x4)
-      val(min, middle 1) = int2_sort_nr (sorted1, sorted3)
-      val(middle2, max) = int2_sort_nr(sorted2, sorted4)
-      val(mid1, mid2) =int2_sort_nr(middle1, middle2)
+fn (xs: int4): int4 =>
+    let
+      val (x1, x2, x3, x4) = xs
+      val (sorted1, sorted2) = int2_sort_nr (x1, x2)
+      val (sorted3, sorted4) = int2_sort_nr (x3, x4)
+      val (min, middle1) = int2_sort_nr (sorted1, sorted3)
+      val (middle2, max) = int2_sort_nr (sorted2, sorted4)
+      val(mid1, mid2) = int2_sort_nr(middle1, middle2)
     in
       (min, mid1, mid2, max)
     end
@@ -106,14 +99,13 @@ fn(xs: int5): int5 =>
       val (x1, x2, x3, x4, x5) = xs
       val (sorted1, sorted2, sorted3, sorted4) = int4_sort_nr(x1, x2, x3, x4)
       val (min1, mid1) = int2_sort_nr(sorted1, x5)
-      val (mid2, mid3) = int2_sort_nr(num2, sorted2)
-      val (mid4, mid5) = int2_sort_nr(num4, sorted3)
-      val (mid6, max) = int2_sort_nr(num6, sorted4)
+      val (mid2, mid3) = int2_sort_nr(mid1, sorted2)
+      val (mid4, mid5) = int2_sort_nr(mid3, sorted3)
+      val (mid6, max) = int2_sort_nr(mid5, sorted4)
     in
           (min1, mid2, mid4, max)
     end
 (* ****** ****** *)
-
 
 
 (* end of [CS320-2023-Sum1-quiz01-int5_sort_nonrec.sml] *)
