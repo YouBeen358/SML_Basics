@@ -62,6 +62,7 @@ fn(xs: int2): int2 =>
     if x1 <= x2 then (x1, x2) else (x2, x1) 
   end 
 
+
 (* ****** ****** *)
 
 val
@@ -106,6 +107,5 @@ fn(xs: int5): int5 =>
           (min1, mid2, mid4, max)
     end
 (* ****** ****** *)
-
 
 (* end of [CS320-2023-Sum1-quiz01-int5_sort_nonrec.sml] *)
