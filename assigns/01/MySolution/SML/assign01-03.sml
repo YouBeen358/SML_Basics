@@ -25,7 +25,31 @@ In particular, your implementation should guarantee:
 
 fun
 xlist_remove_reverse
-(xs: 'a xlist): 'a xlist = raise NotImplemented320
+(xs: 'a xlist): 'a xlist = 
+let
+  fun
+  helper(xs: 'a xlist, switch: bool): 'a xlist =
+
+  case xs of xlist_nil => xlist_nil
+  |
+  xlist_cons(x1, xs) => 
+    if switch = true then xlist_snoc(helper(xs, true), x1)
+    else xlist_cons(x1, helper(xs, false))
+  |
+  xlist_snoc(xs, x1) =>
+    if switch = true then xlist_cons(x1, helper(xs, true))
+    else xlist_snoc(helper(xs, false), x1)
+  |
+  xlist_append(xs, ys) => 
+    if switch = true then xlist_append(helper(ys, true), helper(xs, true))
+    else xlist_append(helper(xs, false), helper(ys, false))
+  |
+  xlist_reverse(xs) =>
+    helper(xs, not switch)
+in
+  helper(xs, false)
+end
+
 					   
 (* ****** ****** *)
 

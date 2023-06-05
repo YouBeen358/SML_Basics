@@ -28,7 +28,8 @@ fun str2int_opt(cs: string): int option
 (* ****** ****** *)
 
 fun
-str2int_opt(cs: string): int option = raise NotImplemented320
+str2int_opt(cs: string): int option = 
+   
 						
 (* ****** ****** *)
 
