@@ -29,10 +29,68 @@ is not allowed to make use of library functions except
 those in the library for this class.
 *)
 (* ****** ****** *)
-(*
-fun
-list_grouping(xs: int list): (int * int) list = ...
-*)
+(*fun merge([], ys) = ys
+  | merge(xs, []) = xs
+  | merge(x::xs, y::ys) =
+      if x < y then
+        x :: merge(xs, y::ys)
+      else
+        y :: merge(x::xs, ys)
+
+fun split [] = ([], [])
+  | split [a] = ([a], [])
+  | split (a::b::cs) =
+      let
+        val (M, N) = split(cs)
+      in
+        (a :: M, b :: N)
+      end
+
+fun mergesort [] = []
+  | mergesort [a] = [a]
+  | mergesort L =
+      let
+        val (M, N) = split L
+      in
+        merge(mergesort M, mergesort N)
+      end
+
+fun list_grouping(xs: int list): (int * int) list =
+  let
+    fun helper(a: (int * int) list, x: int, acc: (int * int) list): (int * int) list =
+      if a = [] then
+        (1, x) :: acc
+      else if not(#2 (List.hd a) = x) then
+        (1, x) :: acc
+      else
+        (#1 (List.hd a) + 1, #2 (List.hd a)) :: List.tl a @ acc
+  in
+    List.foldl (fn (x, a) => helper(a, x, [])) [] (mergesort xs)
+  end*)
+fun list_grouping(xs: int list): (int * int) list =
+  let
+    fun helper([], count, acc) = acc
+      | helper(x::rest, count, acc) =
+          case acc of
+            [] => helper(rest, 1, [(1, x)])
+          | (c, v)::acc' =>
+              if v = x then
+                helper(rest, count + 1, (count + 1, x)::acc')
+              else
+                helper(rest, 1, (1, x)::(count, v)::acc)
+              
+    fun reverse(acc, []) = acc
+      | reverse(acc, x::rest) = reverse(x::acc, rest)
+  in
+    reverse([], helper(xs, 0, []))
+  end;
+
+
+
+
+
+
+                     
 (* ****** ****** *)
 (*
 (*
