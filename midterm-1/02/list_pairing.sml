@@ -28,11 +28,24 @@ implementation.
 //
 *)
 (* ****** ****** *)
-(*
+
 fun
 list_pairing
-(xs: 'a list): ('a * 'a) list * 'a option = ...
-*)
+(xs: 'a list): ('a * 'a) list * 'a option = 
+
+let 
+    val len = list_length(xs)
+    val half = len div 2
+in
+    if (len mod 2 = 0)
+        then (int1_foldleft(half, [], fn(acc, n) => list_append(acc, [(List.nth(xs,n), List.nth(xs, len - 1 -n) )]) ) 
+        , NONE ) 
+    else
+        (int1_foldleft(half, [], fn(acc, n) => list_append(acc, [(List.nth(xs,n), List.nth(xs, len - 1 -n) )]) ) 
+        , SOME (List.nth(xs , half)) )
+end
+
+
 (* ****** ****** *)
 
 (* end of [CS320-2023-Sum1-midterm1-list_pairing.sml] *)
