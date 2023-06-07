@@ -16,9 +16,27 @@ PLEASE NOTE THAT YOU CANNOT DEFINE RECURSIVE
 FUNCTIONS IN YOUR IMPLEMENTATION. If you do,
 your implementation is disqualified.
 *)
-(*
-fun list_factorials(n: int): int list = ...
-*)
+
+fun list_factorials(n: int): int list = 
+    let
+      val num = ref 0
+      val number = ref 1
+      val output = ref []
+
+      fun computeFactorial(): unit =
+          if !num = n then ()
+          else
+            (output := !output @ [!number];
+             number := !number * (!num + 1);
+             num := !num + 1;
+             computeFactorial())
+
+    in
+        computeFactorial();
+        !output
+    end
+
+
 
 (* ****** ****** *)
 
