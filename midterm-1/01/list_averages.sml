@@ -31,10 +31,13 @@ functions in your implementation of list_averages.
 *)
 (* ****** ****** *)
 
-(*
-fun
-list_averages(xs: real list): real list = ...
-*)
+
+fun list_averages(xs: real list): real list =
+#1 (foreach_to_foldleft(list_foreach)(xs, ([], 0.0, 1.0), fn(acc, x) => (
+    list_append( #1(acc), [ (#2(acc) + x ) / #3(acc) ] ), #2(acc) + x  , #3(acc) + 1.0  ) ))
+    
+
+
 
 (* ****** ****** *)
 
