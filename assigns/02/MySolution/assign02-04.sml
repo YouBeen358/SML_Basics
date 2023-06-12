@@ -13,6 +13,25 @@ the left most one should be returned.
 fun list_longest_ascend(xs: int list): int list
 *)
 
+fun list_longest_ascend(xs: int list): int list =
+  let
+    fun select([], _) = []
+      | select(x :: xs', y) =
+          if x >= y then x :: select(xs', y)
+          else select(xs', y)
+
+    fun longest([]) = []
+      | longest(x :: xs') =
+          let
+            val res1 = longest(select(xs', x))
+          in
+            if list_length(x :: res1) >= list_length(longest(xs'))
+            then x :: res1
+            else longest(xs')
+          end
+  in
+    longest(xs)
+  end;
 (* ****** ****** *)
 
-(* end of [CS320-2023-Sum1-assign03-04.sml] *)
+(* end of [CS320-2023-Sum1-assign02-04.sml] *)

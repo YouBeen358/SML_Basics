@@ -35,6 +35,9 @@ val
 list_subsets =
 fn(xs: 'a list) => ...
 *)
+val list_subsets =
+    fn(xs: 'a list) =>
+        list_foldr(xs, [[]], fn (x, acc) => acc @ list_map(acc, fn subset => x :: subset))
 
 (* ****** ****** *)
 

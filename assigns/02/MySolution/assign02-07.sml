@@ -42,6 +42,13 @@ fun
 forall_to_exists
 (forall: ('xs,'x0)forall_t): ('xs,'x0)exists_t = ...
 *)
+fun forall_to_exists(forall: ('xs, 'x0) forall_t): ('xs, 'x0) exists_t =
+    fn (xs, pred) =>
+        let
+            val exists_result = forall(xs, fn x => not (pred x))
+        in
+            not exists_result
+        end
 
 (* ****** ****** *)
 

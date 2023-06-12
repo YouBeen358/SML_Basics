@@ -18,6 +18,16 @@ the list_range function
 //
 fun list_range(start: int, finish: int): int list
 *)
+fun list_range(start: int, finish: int): int list =
+    let
+        fun findrange(start: int, finish: int, acc: int list): int list =
+            if start >= finish then
+                list_reverse(acc)
+            else
+                findrange(start + 1, finish, start :: acc)
+    in
+        (start, finish, [])
+    end
 
 (* ****** ****** *)
 

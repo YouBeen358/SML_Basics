@@ -15,6 +15,15 @@ the following sequence:
 fun
 find_root(f0: int -> int): int = ...
 *)
+fun find_root(f0: int -> int): int =
+    let
+        fun Rootofn(n: int): int =
+            if f0 n = 0 then n
+            else if f0 (~n) = 0 then ~n
+            else Rootofn(n + 1)
+    in
+        Rootofn(0)
+    end
 
 (* ****** ****** *)
 

@@ -30,6 +30,15 @@ in
 end
 *)
 
+fun isPrime(n0: int): bool =
+  let
+    fun isDivisibleByAny(x: int, xs: int list): bool =
+      list_exists (xs, fn(i) => x mod i = 0)
+  in
+    n0 >= 2 andalso
+    not (isDivisibleByAny(n0, list_fromto(2, n0 - 1)))
+  end
+
 (* ****** ****** *)
 
 (* end of [CS320-2023-Sum1-assign02-05.sml] *)
