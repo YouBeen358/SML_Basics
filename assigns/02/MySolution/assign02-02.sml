@@ -20,14 +20,21 @@ fun list_range(start: int, finish: int): int list
 *)
 fun list_range(start: int, finish: int): int list =
     let
-        fun findrange(start: int, finish: int, acc: int list): int list =
-            if start > finish then
-                List.rev(acc)
+        fun rangefind(start: int, finish: int, acc: int list): int list =
+            if start >= finish then
+                list_reverse(acc)
             else
-                findrange(start + 1, finish, start :: acc)
+                rangefind(start + 1, finish, start :: acc)
+        
+        fun recurse(start: int, finish: int, acc: int list): int list =
+            if start >= finish then
+                list_reverse(acc)
+            else
+                recurse(start + 1, finish, start :: acc)
     in
-        findrange(start, finish, [])
+        recurse(start, finish, [])
     end
+
 
 (* ****** ****** *)
 
