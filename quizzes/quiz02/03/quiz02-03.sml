@@ -29,24 +29,19 @@ then it is DISQUALIFIED.
 val quiz02_03 =
 fn(xs: int list) => ...
 *)
+val quiz02_03 = fn(xs: int list) =>
+    let
+      val sublist = list_foldr(
+        list_labelize(xs), [], fn ((_, x), acc) =>
+          if null acc orelse x > hd acc then
+            x :: acc  (* Add to the current sublist *)
+          else
+            acc  (* Skip element *)
+      )
+    in
+      sublist
+    end
 
-fun quiz02_03(xs: int list): int list =
-  let
-    val sublist = list_foldr(
-      xs,
-      nil,
-      fn (x, acc) =>
-        case acc of
-          [] => [x]  
-        | max :: _ =>
-            if x >= max then
-              x :: acc 
-            else
-              acc  
-    )
-  in
-    sublist
-  end
 (* ****** ****** *)
 
 (* end of [CS320-2023-Sum1-quizzes-quiz02-03.sml] *)
