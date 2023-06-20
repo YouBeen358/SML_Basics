@@ -17,13 +17,21 @@ if i1+j1 < i2+j2.
 val theNatPairs: (int*int) stream = fn () => ...
 *)
 
-val theNatPairs: (int * int) stream = 
+val theNatPairs: (int * int) stream = fn () =>
   let
-    fun helper(i: int, j: int): (int * int) stream = fn () =>
-      strcon_cons((i, j), helper(i, j+1))
+    fun check ((i1, j1), (i2, j2)) =
+      i1 + j1 < i2 + j2
+
+    val pair_up = stream_concat (stream_tabulate (10000, fn i =>
+      stream_make_map (int1_streamize (i + 1), fn j => (i - j, j))
+    ))
+
+    val pairsort = stream_make_filter (pair_up, fn s => true)
+
   in
-    helper(0, 0)
+    pairsort ()
   end
+
 
 (* ****** ****** *)
 
