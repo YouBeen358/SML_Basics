@@ -73,29 +73,22 @@ word_neighbors = fn(word: string) => ...
 *)
 
 
-val AB = "abcdefghijklmnopqrstuvwxyz"
+(* ****** ****** *)
+fun helper(s: string, i: int, c: char): string =
+    string_implode(string_imap_list(s, fn (index, ch) => if index <> i then ch else c))
 
+val word_neighbors = fn (word: string) =>
+    let
+        fun replaceChar(index, ch) =
+            string_imap_list
+            (
+                string_implode(string_filter(AB, fn (z) => z <> ch)),
+                fn (_, h) => helper(word, index, h)
+            )
+    in
+        list_concat(string_imap_list(word, replaceChar))
+    end
 
-fun word_neighbors(word: string): string list =
-  let
-    val len = String.size word
-    val wordStream = list_streamize (int1_streamize len)
-    val filteredStream = stream_make_map (wordStream, fn i =>
-      string_concat [
-        string_sub (word, 0, i),
-        string_sub (word, i + 1, len - i - 1)
-      ]
-    )
-    
-    fun collectNeighbors(stream: string stream, acc: string list): string list =
-      case stream () of
-        strcon_nil => acc
-      | strcon_cons (neighbor, rest) => collectNeighbors rest (neighbor :: acc)
-    
-    val neighbors = collectNeighbors filteredStream []
-  in
-    neighbors
-  end
 
 (* ****** ****** *)
 
