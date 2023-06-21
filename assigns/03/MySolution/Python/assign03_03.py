@@ -11,12 +11,14 @@ from mypylib_cls import *
 # to word_neighbors (which is the one for Assign03-02)
 #
 def word_neighbors(word):
-    """
-    Note that this function should returns a fnlist
-    (not a pylist)
-    Your implementation should be combinator-based very
-    much like the posted solution.
-    """
-    raise NotImplementedError
-#
-####################################################
+    neighbors = []
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    
+    for i in range(len(word)):
+        for ch in alphabet:
+            if ch != word[i]:
+                neighbor = word[:i] + ch + word[i+1:]
+                neighbors.append(neighbor)
+    
+    return neighbors
+###################################################
